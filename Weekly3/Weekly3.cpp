@@ -20,17 +20,20 @@ void task1()
 	
 	int getRandomNumber = rand() %10 + 1; // For generating a random number
 	
-	int playerGuess = 0; // For storing the player guess
+	int playerGuess = 11; // For storing the player guess
 
+	std::cout << "Guess a number between 1 and 10 (0 to exit): ";
 
 	do 
 	{
-		std::cout << "Guess a number between 1 and 10 (0 to exit): ";
+		std::cin >> playerGuess;
+
 
 		if (playerGuess == getRandomNumber) // Checking if guess is right
 		{
-			std::cout << "Congratulations, you guessed the right number!\n";
-			std::cout << "It took you " << count << " tries to guess the right number!\n";
+			system("CLS");
+			std::cout << "\nCongratulations, you guessed the right number!\n";
+			std::cout << "It took you " << count << " tries!\n";
 			highscoreTable[tries][1] = count;
 			
 			std::cout << "\nHigh scores:\n";
@@ -39,28 +42,29 @@ void task1()
 			{
 				std::cout << "Game " << highscoreTable[i][0] << " : " << highscoreTable[i][1] << "\n";
 			}
+			std::cout << "\n";
 			
 
 			std::cout << "Press a key to retry: ";
-			tries++;
-			playerGuess = 0; // Reset player guess
+			tries++; // add one to number of tries
+			playerGuess = 11; // Reset player guess
 			count = 0; // reset count from this round
-			getRandomNumber = rand() % 10 + 1;
+			getRandomNumber = rand() % 10 + 1; // set a new random number
 
 			char something = _getch();
 			std::cout << "\n";
+			std::cout << "Guess a number between 1 and 10 (0 to exit): ";
 
 		}
 
 		else
 		{
-			std::cin >> playerGuess;
-
-			std::cout << "Sorry, wrong guess.\n";
+			system("CLS");
+			std::cout << "Sorry, wrong guess. Try again: ";
 			count++;
 		}
 
-	} while (playerGuess >= 0);
+	} while (playerGuess > 0);
 	
 	return;
 
